@@ -20,7 +20,7 @@ window.SITE_CONFIG = {
     p02Video: "https://youtu.be/BVLWR92e69k",
     p03Video: "https://youtu.be/ne0xWQ3QdaQ?t=1378",
     p04Video: "",
-    playGame: ""                                    // WebGL 포팅 후 "/play/character-survivors/" 등
+    gameDownload: ""                                // 플레이 가능한 Windows 빌드(zip) 다운로드 주소 (itch.io, Google Drive 등)
   },
 
   // 문서 PDF 경로 (사이트 루트 기준). 비워 두면 PDF 버튼이 숨겨집니다.
