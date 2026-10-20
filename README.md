@@ -1,6 +1,6 @@
 # 김창홍 포트폴리오 사이트
 
-정적 HTML 사이트입니다. 비공개 GitHub 저장소에서 GitHub Pages로 배포합니다 (GitHub Pro 필요).
+정적 HTML 사이트입니다. 공개 GitHub 저장소에서 GitHub Pages로 배포합니다.
 
 ## 폴더 구성
 
@@ -12,7 +12,7 @@ projects/p01~p04    프로젝트 상세
 assets/css          스타일 (색상은 style.css 맨 위 :root 에서 변경)
 assets/js/config.js 링크 · 연락처 설정  ← 자주 고치는 파일
 assets/js/site.js   공통 헤더/푸터, 유튜브, 이미지 확대
-assets/img          이미지 (profile.jpg = 증명사진)
+assets/img          이미지 (증명사진은 공개하지 않음)
 assets/docs         지원 문서 PDF
 .htaccess           cafe24(Apache) 서버 설정
 ```
@@ -35,7 +35,7 @@ python -m http.server 8765
 
 ## 배포 (GitHub Pages + cafe24 도메인)
 
-- GitHub 저장소(Private, GitHub Pro 필요)에 push → Settings → Pages에서 `main` 브랜치 / `(root)` 배포
+- GitHub 저장소(Public)에 push → Settings → Pages에서 `main` 브랜치 / `(root)` 배포
 - `CNAME` 파일에 `devkim.cloud`가 들어 있어 커스텀 도메인이 자동으로 설정됩니다.
 - cafe24 DNS 관리에 A 레코드 4개(185.199.108.153 / 109.153 / 110.153 / 111.153)와
   `www` CNAME(`CHGangRiO.github.io`)를 등록합니다.
@@ -55,9 +55,8 @@ python -m http.server 8765
 
 ## 플레이 가능한 게임 빌드 배포
 
-- Unity Windows 빌드는 용량이 커서(약 270MB) 이 저장소에 넣지 않습니다.
-  비공개 저장소의 파일·Releases는 방문자가 내려받을 수 없기 때문이기도 합니다.
-- 빌드 폴더에서 아래만 zip으로 묶어 외부(itch.io, Google Drive 등)에 올립니다.
+- Unity Windows 빌드는 용량이 커서(약 270MB) git 커밋에 넣지 않습니다.
+- 빌드 폴더에서 아래만 zip으로 묶어 **GitHub Releases**(파일당 2GB까지) 또는 itch.io 등에 올립니다.
   `CharacterSurvivors.exe`, `CharacterSurvivors_Data/`, `D3D12/`, `GameAssembly.dll`,
   `UnityPlayer.dll`, `UnityCrashHandler64.exe`, `baselib.dll`
   (`*_BackUpThisFolder_ButDontShipItWithYourGame`, `*_BurstDebugInformation_DoNotShip`는 제외)

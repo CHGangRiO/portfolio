@@ -224,25 +224,27 @@ ul { margin: 0; padding: 0; }
   background: var(--surface); border-radius: 22px; box-shadow: 0 20px 60px rgba(15, 24, 48, .16);
   border: 1px solid var(--line); overflow: hidden;
 }
-.profile-main { display: grid; grid-template-columns: 208px 1fr; gap: 44px; padding: 44px 48px 40px; align-items: start; }
-.profile-photo {
-  width: 208px; aspect-ratio: 3 / 4; border-radius: 16px; overflow: hidden; background: #e9edf5;
-  box-shadow: 0 0 0 6px var(--surface), 0 0 0 7px var(--line);
+.profile-main {
+  display: grid; grid-template-columns: 1fr 360px; grid-template-areas: "head info" "mind mind";
+  gap: 28px 44px; padding: 44px 48px 40px; align-items: center;
 }
-.profile-photo img { width: 100%; height: 100%; object-fit: cover; }
+.profile-head { grid-area: head; }
+.profile-info { grid-area: info; }
 .profile-name { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
 .profile-name h1 { font-size: clamp(34px, 4.4vw, 44px); font-weight: 800; letter-spacing: -0.03em; }
 .profile-name span { font-size: 14px; font-weight: 700; letter-spacing: .2em; color: var(--ink-mute); }
 .profile-role { margin-top: 4px; font-size: 16px; color: var(--ink-soft); font-weight: 600; }
 .profile-mind {
-  margin-top: 22px; padding: 16px 20px; border-radius: 12px;
+  grid-area: mind; margin: 0; padding: 18px 24px; border-radius: 12px;
   background: var(--accent-soft); border-left: 4px solid var(--accent);
   font-size: clamp(16px, 1.8vw, 18px); font-weight: 600; line-height: 1.65; color: var(--ink);
 }
-.profile-info { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 8px 36px; margin: 24px 0 0; }
-.profile-info div { min-width: 0; }
-.profile-info dt { font-size: 12.5px; font-weight: 700; letter-spacing: .08em; color: var(--ink-mute); }
-.profile-info dd { margin: 2px 0 0; font-size: 16.5px; font-weight: 600; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+/* 인적 사항 패널 */
+.profile-info { margin: 0; padding: 6px 24px; border-radius: 16px; background: var(--bg); border: 1px solid var(--line); }
+.profile-info div { display: grid; grid-template-columns: 76px 1fr; gap: 12px; align-items: baseline; padding: 14px 0; min-width: 0; }
+.profile-info div + div { border-top: 1px solid var(--line); }
+.profile-info dt { font-size: 13px; font-weight: 700; letter-spacing: .04em; color: var(--ink-mute); }
+.profile-info dd { margin: 0; font-size: 16.5px; font-weight: 600; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
 .profile-info a { text-decoration: none; }
 .profile-info a:hover { color: var(--accent); }
 .profile-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
@@ -262,16 +264,15 @@ ul { margin: 0; padding: 0; }
 .ps-item p { font-size: 15px; color: var(--ink-soft); line-height: 1.65; }
 
 @media (max-width: 900px) {
-  .profile-main { grid-template-columns: 1fr; gap: 28px; padding: 32px 24px 28px; }
-  .profile-photo { width: 156px; }
-  .profile-info { grid-template-columns: 1fr 1fr; }
+  .profile-main { grid-template-columns: 1fr; grid-template-areas: "head" "mind" "info"; gap: 24px; padding: 32px 24px 28px; }
   .profile-strengths { grid-template-columns: 1fr; }
   .ps-item { padding: 22px 24px; }
   .ps-item + .ps-item { border-left: 0; border-top: 1px solid var(--line); }
 }
 @media (max-width: 520px) {
   .apply-band { padding-bottom: 140px; }
-  .profile-info { grid-template-columns: 1fr; }
+  .profile-info { padding: 4px 18px; }
+  .profile-info div { grid-template-columns: 68px 1fr; }
 }
 
 /* 섹션 머리 (메인) */
