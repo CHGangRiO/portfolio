@@ -20,7 +20,9 @@ window.SITE_CONFIG = {
     p02Video: "https://youtu.be/BVLWR92e69k",
     p03Video: "https://youtu.be/ne0xWQ3QdaQ?t=1378",
     p04Video: "",
-    gameDownload: ""                                // 플레이 가능한 Windows 빌드(zip) 다운로드 주소 (itch.io, Google Drive 등)
+    // 플레이 가능한 Windows 빌드 (GitHub Releases). 새 빌드를 올리면 두 주소의 버전을 바꿔 주세요.
+    gameDownload: "https://github.com/CHGangRiO/portfolio/releases/download/game-v0.1.0/CharacterSurvivors_v0.1.0_Win64.zip",
+    gameRelease: "https://github.com/CHGangRiO/portfolio/releases/tag/game-v0.1.0"
   },
 
   // 문서 PDF 경로 (사이트 루트 기준). 비워 두면 PDF 버튼이 숨겨집니다.
