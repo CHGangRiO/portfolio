@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unity 6 3D 액션 게임 | 김창홍</title>
+  <meta name="description" content="Unity 6으로 만든 1인 3D 액션 게임 - 플레이어 전투 시스템, 몬스터 AI, NavMesh 이동">
+  <meta name="theme-color" content="#0f1830">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css?v=3">
+</head>
+<body data-page="projects" data-root="../">
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+  <header id="site-header"></header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container detail-hero-grid">
+        <div>
+          <div class="breadcrumb"><a href="../index.html#projects">프로젝트</a> / PROJECT 01</div>
+          <span class="eyebrow">Project 01 · Unity 6</span>
+          <h1>Unity 6을 이용한<br>3D 액션 게임</h1>
+          <p>1인 제작 · 2026.03.02 – 2026.03.27 (4주) · 모작: CodeVein</p>
+          <dl class="facts">
+            <dt>담당</dt><dd>플레이어 전투 시스템, 몬스터 AI, 내비게이션 기반 이동 구현</dd>
+            <dt>기반</dt><dd>Unity 6 위에서 게임플레이 코드를 전부 직접 작성했습니다. 외부 에셋은 모델과 애니메이션에 한정합니다.</dd>
+            <dt>환경</dt><dd>Unity 6, C#, URP, Input System, UGUI, Cinemachine</dd>
+            <dt>다루는 것</dt><dd>입력/판단/행동 분리 구조, 데이터 기반 공격 구성, 애니메이션 이벤트와 상태 전이의 순서, NavMesh 이동</dd>
+          </dl>
+          <div class="btn-row">
+            <a class="btn btn-primary" data-link="p01Repo">GitHub 저장소</a>
+            <a class="btn btn-ghost" href="#video">플레이 영상</a>
+          </div>
+        </div>
+        <div class="hero-shot"><img src="../assets/img/p1-hero.jpg" alt="Unity 6 3D 액션 게임 플레이 화면 - 성당 맵에서 몬스터와 대치한 플레이어"></div>
+      </div>
+    </section>
+
+    <!-- 구조 -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Architecture</span>
+          <h2>구조 설계</h2>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature-media"><img data-zoom src="../assets/img/p1-arch.jpg" alt="입력/판단/행동 분리 기반 행동 제어 구조 다이어그램 - Player Layer와 Enemy Layer가 공통 Engine Layer를 공유" loading="lazy"></div>
+          <div class="feature-text">
+            <span class="badge">구조</span>
+            <h3>입력 / 판단 / 행동 분리 기반 행동 제어 구조</h3>
+            <div class="feature-points">
+              <div><strong>설계 의도</strong><p>Player와 Enemy가 각자 입력을 받고 상태를 바꾸면 같은 형태의 코드를 두 번 쓰게 되고, 체력이나 스태미나 같은 값도 양쪽에 흩어집니다.</p></div>
+              <div><strong>구성</strong><p>입력원(PlayerInput / EnemyPerception)이 Brain에 판단 재료를 넘기고, 전이 판단은 각 상태가, 자원·스탯·피해 처리는 Engine 계층이 맡습니다.</p></div>
+              <div><strong>효과</strong><p>몬스터를 추가할 때 EnemyStateMachine과 Engine 계층을 그대로 쓰고 상태만 늘리면 됩니다. 자원 소모에 실패하면 상태 진입 자체가 중단되어 UI 값과 어긋나지 않습니다.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature-media"><img data-zoom src="../assets/img/p1-flow.jpg" alt="공격 한 번이 처리되는 흐름 - 입력, 상태 전이, 공격 데이터, 자원/재생, 판정 구간, 피해 처리 6단계" loading="lazy"></div>
+          <div class="feature-text">
+            <span class="badge">구조</span>
+            <h3>공격 한 번이 처리되는 흐름</h3>
+            <div class="feature-points">
+              <div><strong>설계 의도</strong><p>공격 판정 구간을 코드에서 시간으로 계산하면 애니메이션을 교체할 때마다 값을 다시 맞춰야 합니다. 판정 시점을 애니메이션이 직접 알려주게 했습니다.</p></div>
+              <div><strong>구성</strong><p>상태는 WeaponHandler에서 현재 무기의 콤보 배열을 받아 애니메이션을 재생하고, HitBox 활성/비활성은 AnimationEventRelay가, 피해 계산은 DamageReceiver와 DamageCalculator가 맡습니다.</p></div>
+              <div><strong>효과</strong><p>애니메이션을 바꿔도 이벤트 위치만 조정하면 되고, 무기를 추가할 때 상태 코드를 고치지 않습니다.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature-media"><img data-zoom src="../assets/img/p1-nav.jpg" alt="몬스터가 NavMesh 경로를 따라 기둥을 돌아 플레이어를 추적하는 장면" loading="lazy"></div>
+          <div class="feature-text">
+            <span class="badge">구조</span>
+            <h3>몬스터 인식과 NavMesh 기반 이동</h3>
+            <div class="feature-points">
+              <div><strong>설계 의도</strong><p>직선 추적만 쓰면 벽이나 장애물에 걸려 몬스터가 제자리에서 밀립니다. 경로를 따라 이동하되 애니메이션의 이동감은 유지해야 했습니다.</p></div>
+              <div><strong>구성</strong><p>Perception이 플레이어를 인식하면 Brain이 추적 의도를 만들고, 이동 상태가 NavMesh 경로를 따라갑니다.</p></div>
+              <div><strong>효과</strong><p>Player와 같은 실행 흐름을 쓰면서 입력원만 인식으로 바뀌므로, 몬스터를 추가해도 이동·추적 로직을 다시 만들지 않습니다.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 문제 해결 -->
+    <section class="section section-white">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Troubleshooting</span>
+          <h2>문제 해결</h2>
+          <p>이미지를 누르면 크게 볼 수 있습니다.</p>
+        </div>
+
+        <article class="case reveal">
+          <div class="case-head"><span class="case-num">CASE 01</span><h3>무기를 추가할 때마다 상태 코드를 고쳐야 했던 문제</h3></div>
+          <div class="case-media"><img data-zoom src="../assets/img/p1-case1.jpg" alt="Before: 상태 클래스 안에 콤보 애니메이션 이름 하드코딩, After: WeaponData / AttackDefinition 데이터로 분리" loading="lazy"></div>
+          <div class="case-steps">
+            <div class="case-step problem"><strong>문제</strong><p>무기를 추가하거나 콤보를 바꿀 때마다 상태 클래스 코드를 직접 고쳐야 했습니다.</p></div>
+            <div class="case-step"><strong>원인</strong><p>공격 횟수와 애니메이션 이름을 상태가 직접 들고 있어, 데이터여야 할 값이 코드에 섞여 있었습니다.</p></div>
+            <div class="case-step"><strong>선택</strong><p>무기별로 분기하면 조건문이, 상속하면 클래스가 늘어납니다. 값을 데이터로 빼는 쪽을 택했습니다.</p></div>
+            <div class="case-step"><strong>구현</strong><p>공격 구성을 WeaponData와 AttackDefinition으로 분리하고, 상태는 현재 무기 데이터를 참조해 실행만 담당하도록 바꿨습니다.</p></div>
+            <div class="case-step verify"><strong>검증</strong><p>콤보 구성이 다른 무기 2종을 만들어, 코드 변경 없이 에셋 교체만으로 공격 구성이 바뀌는 것을 확인했습니다.</p></div>
+            <div class="case-step limit"><strong>남은 한계</strong><p>데이터 값이 잘못 들어가도 실행 시점에야 드러납니다. 에셋 단계 검사는 넣지 못했습니다.</p></div>
+          </div>
+        </article>
+
+        <article class="case reveal">
+          <div class="case-head"><span class="case-num">CASE 02</span><h3>회피 도중 다시 공격 상태로 돌아가던 문제</h3></div>
+          <div class="case-media"><img data-zoom src="../assets/img/p1-case2.jpg" alt="Before: 몬스터가 회피 중 공격 상태로 되돌아감, After: 회피 동작이 끝까지 유지됨" loading="lazy"></div>
+          <div class="case-steps">
+            <div class="case-step problem"><strong>문제</strong><p>몬스터가 공격 상태에서 회피 상태로 전이한 뒤, 회피 진행 도중 다시 공격 상태로 전이했습니다.</p></div>
+            <div class="case-step"><strong>원인</strong><p>CrossFade 전이 중 이전 애니메이션이 보간 구간에 남아, 이전 클립의 이벤트가 호출되어 상태를 덮어썼습니다.</p></div>
+            <div class="case-step"><strong>선택</strong><p>전이 시 이벤트를 일괄 무시하면 정상 이벤트까지 사라집니다. 이벤트 발생 시점을 보간 구간 밖으로 옮겼습니다.</p></div>
+            <div class="case-step"><strong>구현</strong><p>이벤트 발생 프레임을 앞당겨, 상태 전이 이후에는 이전 클립의 이벤트가 호출되지 않도록 조정했습니다.</p></div>
+            <div class="case-step verify"><strong>검증</strong><p>상태 전이 시각과 이벤트 호출 시각을 함께 로그로 남겨, 전이 이후 이벤트가 오지 않는 것을 확인했습니다.</p></div>
+            <div class="case-step limit"><strong>남은 한계</strong><p>클립마다 이벤트 위치를 수동으로 조정해야 합니다. 전이 시 이전 클립의 이벤트 구독을 끊는 방식이 더 안전합니다.</p></div>
+          </div>
+        </article>
+
+        <article class="case reveal">
+          <div class="case-head"><span class="case-num">CASE 03</span><h3>목표 방향을 바라보기 전에 회피가 실행되던 문제</h3></div>
+          <div class="case-media"><img data-zoom src="../assets/img/p1-case3.jpg" alt="Before: 회전 전에 회피가 실행됨, After: 목표 방향으로 회전한 뒤 회피" loading="lazy"></div>
+          <div class="case-steps">
+            <div class="case-step problem"><strong>문제</strong><p>회피 입력이 들어오면 즉시 상태가 바뀌어, 캐릭터가 목표 방향을 바라보기 전에 회피가 실행됐습니다.</p></div>
+            <div class="case-step"><strong>원인</strong><p>입력을 받은 프레임에 바로 전이해, 회전 처리보다 상태 전이가 먼저 실행되는 순서 문제였습니다.</p></div>
+            <div class="case-step"><strong>선택</strong><p>회전 속도를 높이면 동작이 부자연스러워지므로, 전이 시점을 회전 완료 이후로 미루는 쪽을 택했습니다.</p></div>
+            <div class="case-step"><strong>구현</strong><p>회피 입력을 예약 플래그로 저장해 두었다가, 목표 방향으로 회전이 끝난 뒤 회피 상태로 전이하도록 바꿨습니다.</p></div>
+            <div class="case-step verify"><strong>검증</strong><p>여러 방향에서 회피를 반복해, 입력한 방향과 실제 회피 방향이 일치하는지 확인했습니다.</p></div>
+            <div class="case-step limit"><strong>남은 한계</strong><p>회전 시간만큼 회피 시작이 늦어집니다. 입력 반응성과 방향 정확도 사이의 균형은 더 조정할 여지가 있습니다.</p></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 그 외 -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">More</span>
+          <h2>그 외 구현 — 전투 / 입력 / UI</h2>
+        </div>
+        <div class="gallery reveal"><img data-zoom src="../assets/img/p1-more.jpg" alt="애니메이션 이벤트 기반 판정, HUD 연동, 콤보 입력 버퍼 구현 화면" loading="lazy"></div>
+        <div class="strengths" style="margin-top:20px">
+          <div class="strength reveal"><h3>애니메이션 이벤트 기반 판정</h3><p>충돌 활성·비활성 시점을 애니메이션 이벤트로 제어해, 모션과 판정 구간이 어긋나지 않게 했습니다.</p></div>
+          <div class="strength reveal"><h3>HUD 연동</h3><p>값 변경을 전달받아 갱신하도록 해, UI가 캐릭터 내부 값을 직접 참조하지 않습니다.</p></div>
+          <div class="strength reveal"><h3>콤보 입력 버퍼</h3><p>허용 구간에 들어온 입력을 예약해 두었다가 다음 타로 이어, 정확한 타이밍이 아니어도 콤보가 연결됩니다.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="video">
+      <div class="container">
+        <div class="section-head reveal"><span class="eyebrow">Video</span><h2>플레이 영상</h2></div>
+        <div class="video-card reveal"><div class="video" data-youtube="p01Video" data-title="Unity 6 3D 액션 게임 플레이 영상"></div></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <nav class="next-nav" aria-label="다른 프로젝트">
+          <a class="next" href="p02.html"><small>다음 프로젝트 →</small><strong>DirectX11 3D 액션 게임 (1인)</strong></a>
+        </nav>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+  <script src="../assets/js/config.js?v=1"></script>
+  <script src="../assets/js/site.js?v=2"></script>
+</body>
+</html>

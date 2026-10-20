@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>김창홍 | 게임 클라이언트 프로그래머</title>
+  <meta name="description" content="시스템 구조와 실행 흐름을 기반으로 문제를 분석하고, 설계를 통해 해결하는 게임 클라이언트 프로그래머 김창홍의 포트폴리오입니다.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="김창홍 | 게임 클라이언트 프로그래머">
+  <meta property="og:description" content="Unity · DirectX11 · C++ 게임 클라이언트 포트폴리오">
+  <meta property="og:image" content="assets/img/p1-hero.jpg">
+  <meta name="theme-color" content="#0f1830">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=3">
+</head>
+<body data-page="home" data-root="">
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+  <header id="site-header"></header>
+
+  <main id="main">
+    <!-- 히어로 -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Portfolio 2026</span>
+          <h1>김창홍</h1>
+          <p class="hero-role">게임 클라이언트 프로그래머 · Unity / DirectX11 / C++</p>
+          <div class="hero-divider"></div>
+          <p class="hero-tagline">시스템 구조와 실행 흐름을 기반으로 문제를 분석하고, 설계를 통해 해결하는 개발자입니다.</p>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="#projects">프로젝트 보기</a>
+            <a class="btn btn-ghost" href="about.html">자기소개서</a>
+            <a class="btn btn-ghost" data-link="notion">Notion 포트폴리오</a>
+            <a class="btn btn-ghost" data-link="github">GitHub</a>
+          </div>
+          <div class="hero-stats">
+            <div><strong>5</strong><span>게임·툴 프로젝트</span></div>
+            <div><strong>3</strong><span>자체 엔진 프로젝트</span></div>
+            <div><strong>10</strong><span>문제 해결 사례</span></div>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hero-shot"><img src="assets/img/p1-hero.jpg" alt=""></div>
+          <div class="hero-shot small"><img src="assets/img/p3-hero.jpg" alt=""></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 개발 방식 -->
+    <section class="section" id="approach">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">How I Work</span>
+          <h2>이렇게 개발합니다</h2>
+          <p>기능이 동작하는 데서 멈추지 않고, 여러 기능이 하나의 플레이 흐름으로 이어지도록 구조를 맞춥니다.</p>
+        </div>
+        <div class="strengths">
+          <article class="strength reveal">
+            <span class="strength-num">01</span>
+            <h3>구조 설계</h3>
+            <p>입력 · 판단 · 행동을 계층으로 나누고 공통 로직을 상위로 올려, 캐릭터 종류가 늘어도 실행 흐름을 재사용하도록 설계합니다.</p>
+          </article>
+          <article class="strength reveal">
+            <span class="strength-num">02</span>
+            <h3>원인 추적</h3>
+            <p>증상이 아니라 호출 순서와 데이터 흐름을 따라가 원인을 특정하고, 확인 방법을 남겨 재현 가능하게 만듭니다.</p>
+          </article>
+          <article class="strength reveal">
+            <span class="strength-num">03</span>
+            <h3>선택과 검증</h3>
+            <p>대안을 비교해 제약 조건에 맞는 방식을 고르고, 같은 조건에서 전후를 측정해 결과를 확인합니다.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 프로젝트 -->
+    <section class="section section-white" id="projects">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Projects</span>
+          <h2>프로젝트</h2>
+          <p>각 프로젝트의 구조 설계와 문제 해결 과정을 문제 → 원인 → 선택 → 구현 → 검증 → 남은 한계 순서로 정리했습니다.</p>
+        </div>
+
+        <div class="project-list">
+          <a class="project-card reveal" href="projects/p01.html">
+            <div class="project-thumb"><img src="assets/img/p1-hero.jpg" alt="Unity 6 3D 액션 게임 플레이 화면" loading="lazy"></div>
+            <div class="project-body">
+              <div class="project-meta"><span class="project-no">PROJECT 01</span><span>2026.03 · 1인 · 4주</span><span class="badge">Unity 6</span></div>
+              <h3>Unity 6을 이용한 3D 액션 게임</h3>
+              <p>플레이어 전투 시스템, 몬스터 AI, 내비게이션 기반 이동. 입력/판단/행동 분리 구조와 데이터 기반 공격 구성을 직접 설계했습니다.</p>
+              <ul class="tags"><li>C#</li><li>URP</li><li>Input System</li><li>Cinemachine</li><li>NavMesh</li><li>FSM</li></ul>
+              <span class="project-more">자세히 보기</span>
+            </div>
+          </a>
+
+          <a class="project-card reveal" href="projects/p02.html">
+            <div class="project-thumb"><img src="assets/img/p2-hero.jpg" alt="DirectX11 3D 액션 게임 플레이 화면" loading="lazy"></div>
+            <div class="project-body">
+              <div class="project-meta"><span class="project-no">PROJECT 02</span><span>2025.02 – 2025.04 · 1인</span><span class="badge">DirectX11</span></div>
+              <h3>DirectX11을 이용한 3D 액션 게임</h3>
+              <p>자체 엔진 기반. 파츠로 분리된 모델의 스켈레톤 통합, 계층형 상태 머신 전투, 모델 로딩 시간 2분 → 20초 단축.</p>
+              <ul class="tags"><li>C++</li><li>HLSL 5.0</li><li>FX11</li><li>Assimp</li><li>ImGui</li><li>FMOD</li></ul>
+              <span class="project-more">자세히 보기</span>
+            </div>
+          </a>
+
+          <a class="project-card reveal" href="projects/p03.html">
+            <div class="project-thumb"><img src="assets/img/p3-hero.jpg" alt="DirectX11 팀 프로젝트 보스 몬스터 화면" loading="lazy"></div>
+            <div class="project-body">
+              <div class="project-meta"><span class="project-no">PROJECT 03</span><span>2025.04 – 2025.06 · 5인 팀</span><span class="badge">DirectX11</span></div>
+              <h3>DirectX11을 이용한 3D 액션 게임 (팀)</h3>
+              <p>5인 중 몬스터 담당. 행동트리 기반 AI 구조, 대량 사망 구간 프레임 23 → 58 FPS 개선, 경로 이동과 루트 애니메이션 분리.</p>
+              <ul class="tags"><li>C++</li><li>Behavior Tree</li><li>FSM</li><li>PhysX</li><li>ImGui</li><li>GitHub 협업</li></ul>
+              <span class="project-more">자세히 보기</span>
+            </div>
+          </a>
+
+          <a class="project-card reveal" href="projects/p04.html">
+            <div class="project-thumb"><img src="assets/img/p4-hero.jpg" alt="DirectX9 2.5D 팀 프로젝트 보스전 화면" loading="lazy"></div>
+            <div class="project-body">
+              <div class="project-meta"><span class="project-no">PROJECT 04</span><span>2024.11 – 2024.12 · 4인 팀</span><span class="badge">DirectX9</span></div>
+              <h3>DirectX9을 이용한 2.5D 게임 (팀)</h3>
+              <p>맵 구현 담당. ImGui 기반 맵 툴 제작, 환경 오브젝트 배치, 맵 데이터 저장/로드 구조 설계로 맵 제작 효율 개선.</p>
+              <ul class="tags"><li>C++</li><li>DirectX9</li><li>ImGui</li><li>맵 툴</li></ul>
+              <span class="project-more">자세히 보기</span>
+            </div>
+          </a>
+
+          <div class="project-card coming reveal">
+            <div class="project-body">
+              <div class="coming-icon" aria-hidden="true">▶</div>
+              <div style="flex:1;min-width:240px">
+                <div class="project-meta"><span class="project-no">COMING SOON</span><span class="badge badge-green">WebGL</span></div>
+                <h3>웹에서 바로 플레이하는 Unity 게임</h3>
+                <p style="color:var(--ink-soft)">현재 개발 중인 Unity 프로젝트를 WebGL로 포팅해, 이 페이지에서 바로 플레이할 수 있도록 준비하고 있습니다.</p>
+              </div>
+              <a class="btn btn-outline" data-link="playGame" data-fallback="준비 중">플레이하기</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 영상 -->
+    <section class="section section-dark" id="videos">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Videos</span>
+          <h2>플레이 영상</h2>
+          <p>썸네일을 누르면 영상이 재생됩니다.</p>
+        </div>
+        <div class="video-grid">
+          <article class="video-card reveal">
+            <div class="video" data-youtube="p02Video" data-title="DirectX11 3D 액션 게임 (1인)"></div>
+            <div class="video-card-body"><h3>PROJECT 02 · DirectX11 3D 액션 게임 (1인)</h3><p>스켈레탈 애니메이션 · 계층형 상태 머신 · 락온 카메라 · 트레일</p></div>
+          </article>
+          <article class="video-card reveal">
+            <div class="video" data-youtube="p03Video" data-title="DirectX11 3D 액션 게임 (5인)"></div>
+            <div class="video-card-body"><h3>PROJECT 03 · DirectX11 3D 액션 게임 (5인)</h3><p>행동트리 몬스터 AI · 서바이벌 이벤트 · 보스 몬스터</p></div>
+          </article>
+          <article class="video-card reveal">
+            <div class="video" data-youtube="p01Video" data-title="Unity 6 3D 액션 게임"></div>
+            <div class="video-card-body"><h3>PROJECT 01 · Unity 6 3D 액션 게임</h3><p>플레이어 전투 · 몬스터 AI · NavMesh 이동</p></div>
+          </article>
+          <article class="video-card reveal">
+            <div class="video" data-youtube="p04Video" data-title="DirectX9 2.5D 게임"></div>
+            <div class="video-card-body"><h3>PROJECT 04 · DirectX9 2.5D 게임 (4인)</h3><p>던전형 맵 · 맵 오브젝트 · ImGui 맵 툴</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 기술 스택 -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Skills</span>
+          <h2>보유 기술</h2>
+        </div>
+        <div class="skills">
+          <div class="skill reveal"><h3>LANGUAGE</h3><ul class="tags"><li>C++</li><li>C#</li><li>C</li></ul></div>
+          <div class="skill reveal"><h3>ENGINE</h3><ul class="tags"><li>Unity 6</li><li>자체 엔진 (DirectX)</li></ul></div>
+          <div class="skill reveal"><h3>GRAPHICS</h3><ul class="tags"><li>DirectX 9</li><li>DirectX 11</li><li>HLSL</li><li>FX11</li><li>DirectXTK</li></ul></div>
+          <div class="skill reveal"><h3>AI SYSTEM</h3><ul class="tags"><li>FSM</li><li>Hierarchical FSM</li><li>Behavior Tree</li></ul></div>
+          <div class="skill reveal"><h3>TOOL</h3><ul class="tags"><li>ImGui</li><li>MFC</li><li>Assimp</li></ul></div>
+          <div class="skill reveal"><h3>ETC</h3><ul class="tags"><li>FMOD</li><li>Photon</li><li>PhysX</li><li>Git / GitHub</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 자기소개 하이라이트 -->
+    <section class="section section-white" id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">About</span>
+          <h2>좋아하는 게임의 전투가 어떻게 만들어지는지 궁금했습니다</h2>
+          <p>소울라이크 게임의 패링, 회피, 피격 반응이 만드는 긴장감에서 시작해, 지금은 그 흐름을 직접 구현하고 개선하고 있습니다.</p>
+        </div>
+        <div class="quote-grid">
+          <div class="quote reveal">
+            <h3>끝까지 원인을 추적하는 개발 태도</h3>
+            <p>문제를 작은 단위로 나누어 확인하고, 실행 흐름과 데이터 구조를 함께 살피며 원인을 끝까지 추적합니다.</p>
+          </div>
+          <div class="quote reveal">
+            <h3>보스 패턴을 공략하듯 디버깅</h3>
+            <p>셰이더 변경 뒤 쓰지 않는 데이터를 계속 바인딩하던 코드를 로그 분석으로 찾아 프레임 저하를 해소했습니다.</p>
+          </div>
+          <div class="quote reveal">
+            <h3>협업 흐름을 이어가는 책임감</h3>
+            <p>팀원이 막힌 충돌 처리 문제를 함께 재현하고 조건을 나눠 원인을 좁혀, 프로젝트 흐름이 끊기지 않도록 도왔습니다.</p>
+          </div>
+          <div class="quote reveal">
+            <h3>플레이 흐름을 고려하는 클라이언트 개발자</h3>
+            <p>입력, 상태 전환, 애니메이션, UI, 이펙트가 자연스럽게 이어지는지 확인하고, 안정성과 유지보수성을 함께 고려하겠습니다.</p>
+          </div>
+        </div>
+        <div class="btn-row" style="margin-top:32px">
+          <a class="btn btn-outline" href="about.html">자기소개서 전문 보기</a>
+          <a class="btn btn-outline" href="resume.html">이력 보기</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 연락 -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-box reveal">
+          <div>
+            <span class="eyebrow">Contact</span>
+            <h2>함께 일할 기회를 기다리고 있습니다</h2>
+            <p>게임 클라이언트 프로그래머(신입) 포지션에 지원하고 있습니다. 편하게 연락 주세요.</p>
+          </div>
+          <div class="contact-links">
+            <a class="contact-link" data-link="email"><span>EMAIL</span><span data-text="email"></span></a>
+            <a class="contact-link" data-link="github"><span>GITHUB</span><span>github.com/CHGangRiO</span></a>
+            <a class="contact-link" data-link="notion"><span>NOTION</span><span>포트폴리오 페이지</span></a>
+            <a class="contact-link" data-link="portfolioPdf"><span>PDF</span><span>포트폴리오 내려받기</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+  <script src="assets/js/config.js?v=1"></script>
+  <script src="assets/js/site.js?v=2"></script>
+</body>
+</html>

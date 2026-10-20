@@ -1,0 +1,55 @@
+# ==========================================================
+#  cafe24 웹호스팅(Apache)용 설정
+#  모든 항목을 <IfModule>로 감싸서, 서버에 모듈이 없어도 500 오류가 나지 않습니다.
+# ==========================================================
+
+AddDefaultCharset UTF-8
+Options -Indexes
+DirectoryIndex index.html
+
+# ---------- MIME 타입 ----------
+<IfModule mod_mime.c>
+  AddType image/svg+xml .svg
+  AddType application/wasm .wasm
+  AddCharset UTF-8 .html .css .js .json .svg
+</IfModule>
+
+# ---------- 텍스트 파일 압축 ----------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain application/javascript application/json image/svg+xml
+</IfModule>
+
+# ---------- 브라우저 캐시 ----------
+# HTML은 매번 새로 받고, CSS/JS는 링크 뒤의 ?v=번호를 바꿔서 갱신합니다.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 7 days"
+  ExpiresByType application/javascript "access plus 7 days"
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/svg+xml "access plus 30 days"
+</IfModule>
+
+# ---------- Unity WebGL (나중에 /play/ 폴더에 빌드를 올릴 때 사용) ----------
+# Unity에서 Compression Format을 Gzip으로 빌드하면 아래 설정이 압축 파일을 올바르게 전달합니다.
+# 서버에서 동작하지 않으면 Unity Player Settings의 "Decompression Fallback"을 켜고 빌드하세요.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(data|wasm|js|symbols\.json)\.gz$">
+    Header set Content-Encoding gzip
+    Header append Vary Accept-Encoding
+  </FilesMatch>
+  <FilesMatch "\.(data|wasm|js|symbols\.json)\.br$">
+    Header set Content-Encoding br
+    Header append Vary Accept-Encoding
+  </FilesMatch>
+</IfModule>
+<FilesMatch "\.data\.(gz|br)$">
+  ForceType application/octet-stream
+</FilesMatch>
+<FilesMatch "\.wasm\.(gz|br)$">
+  ForceType application/wasm
+</FilesMatch>
+<FilesMatch "\.js\.(gz|br)$">
+  ForceType application/javascript
+</FilesMatch>

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DirectX11 3D 액션 게임 (1인) | 김창홍</title>
+  <meta name="description" content="DirectX11 자체 엔진으로 만든 1인 3D 액션 게임 - 모델 로드, 스켈레탈 애니메이션, 계층형 상태 머신 전투, 카메라">
+  <meta name="theme-color" content="#0f1830">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css?v=3">
+</head>
+<body data-page="projects" data-root="../">
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+  <header id="site-header"></header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container detail-hero-grid">
+        <div>
+          <div class="breadcrumb"><a href="../index.html#projects">프로젝트</a> / PROJECT 02</div>
+          <span class="eyebrow">Project 02 · DirectX11</span>
+          <h1>DirectX11을 이용한<br>3D 액션 게임</h1>
+          <p>1인 제작 · 2025.02.03 – 2025.04.25 · 모작: CodeVein</p>
+          <dl class="facts">
+            <dt>담당</dt><dd>모델 로드 및 스켈레탈 애니메이션, 전투, 카메라 구현</dd>
+            <dt>기반</dt><dd>DirectX 11 기반 자체 제작 엔진</dd>
+            <dt>환경</dt><dd>C++, DirectX11 (HLSL 5.0, FX11), DirectXTK, Assimp, ImGui, FMOD</dd>
+            <dt>다루는 것</dt><dd>파츠로 분리된 모델의 스켈레톤 통합 / 계층형 상태 머신 기반 전투 / 로딩 시간 단축 / 애니메이션 이동 일치 / 공격 궤적</dd>
+          </dl>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="#video">플레이 영상</a>
+          </div>
+        </div>
+        <div class="hero-shot"><img src="../assets/img/p2-hero.jpg" alt="DirectX11 3D 액션 게임 - 대형 무기를 든 캐릭터" ></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Architecture</span>
+          <h2>구조 설계</h2>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature-media"><img data-zoom src="../assets/img/p2-arch.jpg" alt="파츠로 분리된 모델 구조 - CModel_Pos가 본과 애니메이션을, CModel_Draw 8종이 메시와 머티리얼을 담당" loading="lazy"></div>
+          <div class="feature-text">
+            <span class="badge">구조</span>
+            <h3>파츠로 분리된 모델을 하나의 캐릭터로</h3>
+            <div class="feature-points">
+              <div><strong>설계 의도</strong><p>캐릭터가 얼굴, 머리, 의상, 무기 등 파츠 파일로 나뉘어 있고 일부 본이 중복되어, 파츠마다 애니메이션을 따로 돌리면 동작이 어긋납니다.</p></div>
+              <div><strong>구성</strong><p>본과 애니메이션은 CModel_Pos 하나가 갖고, 파츠 8종은 CModel_Draw로 메시와 머티리얼만 가집니다. 모델을 읽을 때 기존 본 목록을 넘겨 병합하고, 불필요한 본은 걸러냈습니다.</p></div>
+              <div><strong>효과</strong><p>본 1세트를 파츠 8종이 공유하므로 같은 애니메이션이 전체에 동일하게 적용되고, 파츠를 추가해도 애니메이션 처리를 다시 만들지 않습니다.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature-media"><img data-zoom src="../assets/img/p2-hfsm.jpg" alt="계층형 상태 머신 구조 - IFSMContainer, IStateMachine, IBaseState 3단 구성" loading="lazy"></div>
+          <div class="feature-text">
+            <span class="badge">구조</span>
+            <h3>계층형 상태 머신 기반 전투 제어</h3>
+            <div class="feature-points">
+              <div><strong>설계 의도</strong><p>상태가 늘수록 상태 간 전이 조건이 급격히 늘어, 어떤 상태에서 어디로 갈 수 있는지 추적하기 어려웠습니다.</p></div>
+              <div><strong>구성</strong><p>계층 간 전이는 FSMContainer가, 계층 안의 상태 전이는 StateMachine이, 애니메이션 지정과 종료 판정은 BaseState가 맡도록 3단으로 나눴습니다.</p></div>
+              <div><strong>효과</strong><p>피격·사망처럼 어느 계층에서나 발생하는 전이를 Container에서 한 번만 정의하면 되고, 상태를 추가할 때 영향 범위가 그 계층 안으로 제한됩니다.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-white">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Troubleshooting</span>
+          <h2>문제 해결</h2>
+          <p>이미지를 누르면 크게 볼 수 있습니다.</p>
+        </div>
+
+        <article class="case reveal">
+          <div class="case-head"><span class="case-num">CASE 01</span><h3>모델 로딩에 실행마다 약 2분이 걸리던 문제</h3><span class="badge badge-green">2분 → 20초</span></div>
+          <div class="case-media"><img data-zoom src="../assets/img/p2-case1.jpg" alt="진단 도구 비교 - Before 2분 10초, After 21초, 준비 단계와 실행 단계 분리 다이어그램" loading="lazy"></div>
+          <div class="case-steps">
+            <div class="case-step problem"><strong>문제</strong><p>Assimp로 원본 모델을 직접 로드할 때 실행마다 약 2분이 걸렸고, 모델이 복잡할수록 초기 로딩이 크게 늘었습니다.</p></div>
+            <div class="case-step"><strong>원인</strong><p>원본 파일 전체를 파싱해야 했고, 애니메이션/본/메시 데이터를 매 실행 초기화 단계에서 다시 처리하고 있었습니다.</p></div>
+            <div class="case-step"><strong>선택</strong><p>비동기 로딩은 체감만 개선하고 반복 테스트 비용은 그대로입니다. 준비 비용을 최초 1회로 옮기는 직렬화를 택했습니다.</p></div>
+            <div class="case-step"><strong>구현</strong><p>런타임에 필요한 메시/본/애니메이션만 추출해 별도 포맷으로 저장하고, 실행 시에는 역직렬화만 수행하도록 준비 단계와 실행 단계를 분리했습니다.</p></div>
+            <div class="case-step verify"><strong>검증</strong><p>동일 조건에서 반복 측정한 결과 로딩이 약 2분에서 20초 이하로 줄었고, 반복 테스트와 디버깅 주기가 짧아졌습니다.</p></div>
+            <div class="case-step limit"><strong>남은 한계</strong><p>원본 모델이 바뀌면 다시 직렬화해야 하는데, 변경 감지와 자동 갱신까지는 넣지 못해 수동으로 처리했습니다.</p></div>
+          </div>
+        </article>
+
+        <article class="case reveal">
+          <div class="case-head"><span class="case-num">CASE 02</span><h3>애니메이션 이동과 실제 월드 위치가 어긋나던 문제</h3></div>
+          <div class="case-media"><img data-zoom src="../assets/img/p2-case2.jpg" alt="루트 애니메이션 - Before: 대쉬 후 캐릭터가 제자리로 돌아감, After: 이동량이 월드 위치에 반영됨" loading="lazy"></div>
+          <div class="case-steps">
+            <div class="case-step problem"><strong>문제</strong><p>대쉬처럼 이동이 포함된 애니메이션에서 화면상 캐릭터는 움직이는데 실제 월드 좌표는 제자리였습니다.</p></div>
+            <div class="case-step"><strong>원인</strong><p>이동량이 애니메이션의 로컬 좌표에만 적용되고 월드 행렬로 전달되지 않아, 연출 위치와 충돌 판정 위치가 어긋났습니다.</p></div>
+            <div class="case-step"><strong>선택</strong><p>애니메이션에서 이동을 빼고 코드로 옮기면 모션과 속도가 어긋나므로, 애니메이션의 이동량을 그대로 월드로 옮기는 쪽을 택했습니다.</p></div>
+            <div class="case-step"><strong>구현</strong><p>이동을 담당하는 본의 로컬 위치를 저장해 두고, 다음 갱신에서 그 차이를 월드 행렬에 전달한 뒤 해당 본의 위치를 원점으로 되돌렸습니다.</p></div>
+            <div class="case-step verify"><strong>검증</strong><p>동일 시작 좌표에서 대쉬를 반복해 종료 좌표와 충돌 판정 위치가 일치하는지 확인했습니다.</p></div>
+            <div class="case-step limit"><strong>남은 한계</strong><p>회전이 포함된 애니메이션에서는 회전량까지 함께 옮겨야 하는데, 이번 프로젝트에서는 이동량만 처리했습니다.</p></div>
+          </div>
+        </article>
+
+        <article class="case reveal">
+          <div class="case-head"><span class="case-num">CASE 03</span><h3>공격 궤적이 없어 타격감과 충돌 확인이 모두 어려웠던 문제</h3></div>
+          <div class="case-media"><img data-zoom src="../assets/img/p2-case3.jpg" alt="트레일 이펙트 - Before: 궤적 없음, After: 검 궤적 메시 표시" loading="lazy"></div>
+          <div class="case-steps">
+            <div class="case-step problem"><strong>문제</strong><p>공격 시 무기 궤적이 남지 않아 타격감이 약했고, 충돌이 활성화된 구간을 직관적으로 확인할 수 없었습니다.</p></div>
+            <div class="case-step"><strong>원인</strong><p>현재 프레임의 무기 위치만 렌더링되어 이동 궤적이 남지 않았고, 충돌 여부는 피격 애니메이션으로만 간접 확인할 수 있었습니다.</p></div>
+            <div class="case-step"><strong>선택</strong><p>파티클로 흉내 내면 무기 위치와 어긋나므로, 실제 무기 좌표를 추적해 궤적 메시를 만드는 방식을 택했습니다.</p></div>
+            <div class="case-step"><strong>구현</strong><p>충돌이 활성화된 프레임에서 검 손잡이와 검 끝 좌표로 버퍼를 구성하고, 간격이 넓으면 중간 지점을 추가해 스플라인 보간으로 메시를 생성했습니다.</p></div>
+            <div class="case-step verify"><strong>검증</strong><p>빠른 스윙 구간에서 궤적이 끊기지 않는지, 충돌 활성 구간과 궤적 표시 구간이 일치하는지 확인했습니다.</p></div>
+            <div class="case-step limit"><strong>남은 한계</strong><p>궤적 길이와 수명이 고정값이라 무기 종류별로 조정하려면 코드를 고쳐야 합니다.</p></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">More</span>
+          <h2>그 외 구현 — 전투 / 카메라 / 이펙트</h2>
+        </div>
+        <div class="gallery reveal"><img data-zoom src="../assets/img/p2-more.jpg" alt="구면 좌표 카메라, 카메라 락온, 디졸브 이펙트 구현 화면" loading="lazy"></div>
+        <div class="strengths" style="margin-top:20px">
+          <div class="strength reveal"><h3>구면 좌표 카메라</h3><p>방위각, 고각, 거리로 위치를 계산하고 고각에 상한을 두어 카메라가 뒤집히지 않게 했습니다.</p></div>
+          <div class="strength reveal"><h3>카메라 락온</h3><p>정면 15도 내 가장 가까운 대상을 타겟으로 두고, 타겟이 없으면 플레이어 정면으로 정렬합니다.</p></div>
+          <div class="strength reveal"><h3>디졸브</h3><p>사망 후 노이즈 텍스처 샘플링 값이 임계값보다 작은 픽셀을 버려 서서히 사라지게 했습니다.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="video">
+      <div class="container">
+        <div class="section-head reveal"><span class="eyebrow">Video</span><h2>플레이 영상</h2></div>
+        <div class="video-card reveal"><div class="video" data-youtube="p02Video" data-title="DirectX11 3D 액션 게임 플레이 영상"></div></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <nav class="next-nav" aria-label="다른 프로젝트">
+          <a href="p01.html"><small>← 이전 프로젝트</small><strong>Unity 6 3D 액션 게임 (1인)</strong></a>
+          <a class="next" href="p03.html"><small>다음 프로젝트 →</small><strong>DirectX11 3D 액션 게임 (5인)</strong></a>
+        </nav>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+  <script src="../assets/js/config.js?v=1"></script>
+  <script src="../assets/js/site.js?v=2"></script>
+</body>
+</html>
