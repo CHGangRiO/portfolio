@@ -7,12 +7,13 @@
 
   // ---------- 공통 헤더 / 푸터 ----------
   var nav = [
-    { id: "home", label: "홈", href: "index.html" },
-    { id: "about", label: "자기소개", href: "about.html" },
-    { id: "resume", label: "이력", href: "resume.html" },
+    { id: "home", label: "프로필", href: "index.html#profile" },
+    { id: "skills", label: "기술 스택", href: "index.html#skills" },
     { id: "projects", label: "프로젝트", href: "index.html#projects" },
-    { id: "videos", label: "영상", href: "index.html#videos" }
+    { id: "documents", label: "문서", href: "index.html#documents" }
   ];
+  // 서브 페이지는 해당 메뉴를 현재 위치로 표시
+  var current = { about: "documents", resume: "documents" }[page] || page;
 
   var header = document.getElementById("site-header");
   if (header) {
@@ -23,9 +24,9 @@
       '<button class="nav-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span><span></span></button>' +
       '<nav class="site-nav" aria-label="주 메뉴"><ul>' +
       nav.map(function (n) {
-        return '<li><a href="' + root + n.href + '"' + (n.id === page ? ' aria-current="page"' : "") + ">" + n.label + "</a></li>";
+        return '<li><a href="' + root + n.href + '"' + (n.id === current && page !== "home" ? ' aria-current="page"' : "") + ">" + n.label + "</a></li>";
       }).join("") +
-      '<li><a class="nav-cta" href="' + root + 'index.html#contact">연락하기</a></li>' +
+      '<li><a class="nav-cta" href="mailto:' + cfg.email + '">연락하기</a></li>' +
       "</ul></nav></div>";
 
     var toggle = header.querySelector(".nav-toggle");
@@ -58,6 +59,7 @@
   // ---------- data-link 채우기 (비어 있으면 숨김) ----------
   function resolveLink(key) {
     if (key === "email") return cfg.email ? "mailto:" + cfg.email : "";
+    if (key === "phone") return cfg.phone ? "tel:" + cfg.phone.replace(/[^0-9+]/g, "") : "";
     if (key === "github") return cfg.github || "";
     if (key === "notion") return cfg.notion || "";
     if (cfg.links && key in cfg.links) {

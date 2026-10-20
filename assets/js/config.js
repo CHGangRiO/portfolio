@@ -4,6 +4,9 @@ window.SITE_CONFIG = {
   name: "김창홍",
   nameEn: "KIM CHANG HONG",
   role: "게임 클라이언트 프로그래머",
+  position: "Game Developer (Client)",
+  birth: "1995.07.20",
+  phone: "010-4720-0578",
   email: "1138aiie@gmail.com",
   github: "https://github.com/CHGangRiO",
 
@@ -20,10 +23,11 @@ window.SITE_CONFIG = {
     playGame: ""                                    // WebGL 포팅 후 "/play/character-survivors/" 등
   },
 
-  // PDF를 서버에 올려 내려받게 하려면 경로를 넣으세요. (예: "/assets/docs/portfolio.pdf")
-  // 개인정보(전화번호·주소 등)가 포함된 파일은 올리지 않는 것을 권장합니다.
+  // 문서 PDF 경로 (사이트 루트 기준). 비워 두면 PDF 버튼이 숨겨집니다.
   docs: {
-    portfolioPdf: "",
-    techPdf: ""
+    coverLetterPdf: "/assets/docs/cover-letter.pdf",
+    applicationPdf: "",                             // 입사지원서 PDF는 주소·병역 사유가 있어 기본 비공개
+    portfolioPdf: "/assets/docs/portfolio.pdf",
+    techPdf: "/assets/docs/tech-intro.pdf"
   }
 };
