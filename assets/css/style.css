@@ -336,7 +336,7 @@ ul { margin: 0; padding: 0; }
 }
 .pj-mini h3 { font-size: 17px; margin: 2px 0 4px; }
 .pj-mini p { font-size: 14.5px; color: var(--ink-soft); }
-.pj-mini .btn { margin-top: 12px; }
+.pj-mini .btn-row { margin-top: 12px; gap: 8px; }
 @media (max-width: 900px) { .pj-grid, .pj-mini-grid { grid-template-columns: 1fr; } }
 
 /* ⑤ 문서 */
