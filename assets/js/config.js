@@ -15,6 +15,7 @@ window.SITE_CONFIG = {
 
   // 프로젝트별 링크
   links: {
+    p06Repo: "",                                    // MiniRTS 저장소 (공개로 바꾼 뒤 https://github.com/CHGangRiO/ProjectNeo2D 입력)
     p01Repo: "https://github.com/CHGangRiO/p-11u-mg-ps",
     p01Video: "",                                   // 유튜브 업로드 후 영상 ID 또는 주소
     p02Video: "https://youtu.be/BVLWR92e69k",
@@ -31,6 +32,7 @@ window.SITE_CONFIG = {
   docs: {
     coverLetterPdf: "/assets/docs/cover-letter.pdf",
     applicationPdf: "",                             // 입사지원서 PDF는 주소·병역 사유가 있어 기본 비공개
+    minirtsPdf: "/assets/docs/minirts-portfolio.pdf",
     portfolioPdf: "/assets/docs/portfolio.pdf",
     techPdf: "/assets/docs/tech-intro.pdf"
   }

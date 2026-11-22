@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MiniRTS · AI 협업 분대 디펜스 | 김창홍</title>
+  <meta name="description" content="Unity 6로 AI(Claude)와 협업해 6일 만에 만든 세로 화면 분대 디펜스 게임 - 기획, 설계 판단, 플레이 테스트, 검증 루프, WebGL 배포">
+  <meta name="theme-color" content="#0f1830">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css?v=7">
+  <style>
+    .p6-shot { aspect-ratio: 540 / 935 !important; max-width: 360px; justify-self: center; }
+    .p6-shots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .p6-shots figure { margin: 0; }
+    .p6-shots figcaption { font-size: 14px; color: var(--ink-soft); margin-top: 6px; text-align: center; }
+    @media (max-width: 820px) { .p6-shots { grid-template-columns: repeat(2, 1fr); } }
+    .p6-flow { margin: 0; padding-left: 22px; display: grid; gap: 8px; font-size: 16px; }
+    .p6-table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; font-size: 15.5px; }
+    .p6-table th, .p6-table td { padding: 12px 16px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    .p6-table th { font-size: 14px; color: var(--ink-soft); }
+    .p6-wrap { overflow-x: auto; }
+  </style>
+</head>
+<body data-page="projects" data-root="../">
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+  <header id="site-header"></header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container detail-hero-grid">
+        <div>
+          <div class="breadcrumb"><a href="../index.html#projects">프로젝트</a> / PROJECT 06</div>
+          <span class="eyebrow">Project 06 · Unity 6 · AI 협업</span>
+          <h1>MiniRTS<br>AI와 6일 만에 만든 분대 디펜스</h1>
+          <p>1인 + AI(Claude) · 2026.11.17 – 2026.11.23 · 기획서 v1.0 → v1.5</p>
+          <dl class="facts">
+            <dt>게임</dt><dd>세로 화면 분대 디펜스. 분대를 끌어 움직이며 몬스터를 막고, 결과 재화로 새 캐릭터를 뽑아 강화합니다.</dd>
+            <dt>내 역할</dt><dd>기획, 규칙과 수치 결정, 플레이 테스트, AI 작업 지시와 검토, 병합·배포 판단</dd>
+            <dt>환경</dt><dd>Unity 6000.3 2D URP, C#, HLSL, Unity Gaming Services(Authentication, Cloud Save), WebGL, Python</dd>
+            <dt>규모</dt><dd>PR 10개 병합, 자동 테스트 134개, 스테이지 2개, 캐릭터 6종, 몬스터 행동 5종</dd>
+          </dl>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="../play/minirts/">브라우저에서 플레이</a>
+            <a class="btn btn-ghost" data-link="p06Repo">GitHub 저장소</a>
+            <a class="btn btn-ghost" data-link="minirtsPdf" target="_blank" rel="noopener">PDF</a>
+          </div>
+        </div>
+        <div class="hero-shot p6-shot"><img src="../assets/img/p6-battle.jpg" alt="MiniRTS 전투 화면 - 왼쪽 적 길에서 몬스터가 내려오고 오른쪽 금색 보상 길에 아이템이 떨어짐"></div>
+      </div>
+    </section>
+
+    <!-- 왜 -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Why</span>
+          <h2>분대가 커질수록 강해지지만, 피하기는 어려워진다</h2>
+          <p>아이템을 먹어 분대가 불어나는 만족감에 대가가 없다는 점을 보고, 성장의 대가를 조작 난이도로 돌려주고 싶었습니다.</p>
+        </div>
+        <div class="strengths">
+          <div class="strength reveal"><h3>분대 = 벽</h3><p>몬스터는 분대에 막히고, 놓친 몬스터는 아래 방어선을 깎습니다. 분대가 넓을수록 많이 막지만 폭탄병·기마병 같은 패턴을 피하기 어렵습니다.</p></div>
+          <div class="strength reveal"><h3>두 길의 선택</h3><p>적 길을 막을지, 금색 보상 길로 가서 분대를 키울지 매 순간 고릅니다.</p></div>
+          <div class="strength reveal"><h3>끝이 있는 판</h3><p>스테이지 1은 120마리, 2는 160마리. 보스까지 전멸시켜야 클리어입니다. 결과 재화로 뽑기를 하고 기록은 계정에 저장됩니다.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI 협업 -->
+    <section class="section section-white">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">AI Collaboration</span>
+          <h2>AI는 만들고, 방향과 기준은 제가 정했습니다</h2>
+          <p>착수 전 정한 규칙: 코드를 쓰기 전에 AI가 기능 구조를 설명하고 의도를 물은 뒤, 제가 허락해야 구현합니다.</p>
+        </div>
+
+        <div class="feature reveal">
+          <div class="feature-media"><img data-zoom src="../assets/img/p6-setup.jpg" alt="분대 배치 화면 - 캐릭터 6종의 코스트와 잠김 상태, 대형 미리보기, 플레이어 스킬과 스테이지 선택" loading="lazy" style="max-width:360px;margin:0 auto;display:block"></div>
+          <div class="feature-text">
+            <span class="badge">흐름</span>
+            <h3>한 기능이 도는 순서</h3>
+            <ol class="p6-flow">
+              <li>AI가 구조안(설계 문서 12개)과 확인 질문을 올림</li>
+              <li>제가 규칙과 수치를 정하고 승인</li>
+              <li>AI가 develop 브랜치에 기능 단위로 커밋 (Feat / Fix / Chore 분리)</li>
+              <li>AI가 제 PC의 Unity를 배치 모드로 원격 실행해 컴파일·테스트·씬 생성까지 확인</li>
+              <li>제가 직접 플레이하고 피드백 → 1로</li>
+              <li>만족하면 develop → main PR, 제가 검토 후 병합</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="p6-wrap reveal">
+          <table class="p6-table">
+            <thead><tr><th>AI에게 맡긴 것</th><th>내가 정한 것</th></tr></thead>
+            <tbody>
+              <tr><td>코드 구현, 테스트 작성, 씬·프리팹 코드 생성</td><td>핵심 규칙 (공격 대상, 반올림 방향, 클리어 조건)</td></tr>
+              <tr><td>기획서에 없는 수치의 초안</td><td>플레이 후 수치 조정 (판 길이, 몬스터 수, 보스 등장 시각)</td></tr>
+              <tr><td>버그 원인 분석, 선택지 제시</td><td>어느 선택지로 갈지, 범위에 넣을지</td></tr>
+              <tr><td>빌드·배포 자동화</td><td>배포처와 공개 시점 (병합 = 공개)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 사례 -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Cases</span>
+          <h2>대표 사례</h2>
+        </div>
+
+        <article class="case reveal">
+          <div class="case-head"><span class="case-num">CASE 01</span><h3>수치는 Excel에서만 고치게 한 데이터 파이프라인</h3></div>
+          <div class="case-steps">
+            <div class="case-step problem"><strong>문제</strong><p>플레이 테스트로 수치를 자주 바꿀 텐데, 그때마다 코드나 인스펙터를 건드리면 사람과 AI 모두 느려집니다.</p></div>
+            <div class="case-step"><strong>내가 정한 것</strong><p>Excel로 편집, 저장하면 자동 반영 + 수동 메뉴, 코드 값은 영문이고 설명·UI만 한글.</p></div>
+            <div class="case-step"><strong>선택</strong><p>AI가 "행마다 SO" 대신 "CSV마다 표 SO 하나"를 제안했고, 파일 수와 관리 부담이 줄어 승인했습니다.</p></div>
+            <div class="case-step"><strong>구현</strong><p>CSV → JSON → ScriptableObject. 오류가 하나라도 있으면 아무것도 쓰지 않고, 검증 규칙은 필드 속성으로 선언, SO는 값만 교체해 씬 참조를 유지합니다.</p></div>
+            <div class="case-step verify"><strong>결과</strong><p>표가 6종에서 스테이지·패턴·뽑기·보상까지 늘어도 같은 파이프라인을 썼고, 긴 웨이브 데이터는 Python 생성기로 만들었습니다.</p></div>
+            <div class="case-step limit"><strong>남은 한계</strong><p>표 사이 참조는 ID 문자열이라 임포터 검사에 의존합니다.</p></div>
+          </div>
+        </article>
+
+        <article class="case reveal">
+          <div class="case-head"><span class="case-num">CASE 02</span><h3>직접 플레이해서 웨이브를 다섯 번 고친 과정</h3></div>
+          <div class="case-steps">
+            <div class="case-step problem"><strong>문제</strong><p>처음 웨이브는 5분짜리 판에 아이템이 너무 많아 긴장감이 없었습니다.</p></div>
+            <div class="case-step"><strong>비교 기준</strong><p>장르 대표 게임 영상을 AI가 2초 간격으로 분석해 길 구조·보상 밀도·판 길이를 숫자로 비교했고, 그중 네 가지만 골라 참조했습니다.</p></div>
+            <div class="case-step"><strong>선택</strong><p>"보상이 37초에 하나인데 참고 게임은 2~3초에 하나"처럼 숫자로 말하니 결정이 빨라졌습니다. 적 길과 보상 길을 분리했습니다.</p></div>
+            <div class="case-step"><strong>구현</strong><p>시드 기반 스트림 생성, 보상 보장 규칙, 보스 예고 배너, 몬스터 행동 5종(막기·추격·공성·관통·자폭).</p></div>
+            <div class="case-step verify"><strong>결과</strong><p>판 80초/100초, 스테이지당 120/160마리, 보스 포함 전멸 = 클리어로 확정했습니다.</p></div>
+            <div class="case-step limit"><strong>남은 한계</strong><p>수치는 제 플레이 기준입니다. 다른 사람의 플레이 테스트가 다음 단계입니다.</p></div>
+          </div>
+        </article>
+
+        <article class="case reveal">
+          <div class="case-head"><span class="case-num">CASE 03</span><h3>AI의 답을 한 번 더 확인하는 검증 루프</h3></div>
+          <div class="case-steps">
+            <div class="case-step problem"><strong>문제</strong><p>AI는 클라우드에서 일해 Unity 에디터를 실행할 수 없었습니다. 코드는 쓰지만 컴파일·플레이 확인은 사람 몫이었습니다.</p></div>
+            <div class="case-step"><strong>선택</strong><p>제 PC의 Unity를 배치 모드로 원격 실행하도록 허용하고, 씬도 코드로 생성해 에디터 수작업을 0으로 만들었습니다.</p></div>
+            <div class="case-step"><strong>잡은 문제 1</strong><p>AI가 기억에 의존한 Light2D 어셈블리 이름이 URP 17.3에서 바뀌어 컴파일 에러. PR 전에 잡았습니다.</p></div>
+            <div class="case-step"><strong>잡은 문제 2</strong><p>씬 생성 순서 때문에 데이터 참조가 빈 채로 저장됨. "생성 성공"이 아니라 핵심 참조까지 검사하도록 빌더를 고쳤습니다.</p></div>
+            <div class="case-step verify"><strong>결과</strong><p>단위 테스트 32개 → 134개. 매 커밋 전부 통과한 뒤에만 플레이 테스트로 넘어갔습니다.</p></div>
+            <div class="case-step limit"><strong>배운 점</strong><p>눈에 보이는 버그(조준, 등장 위치)는 테스트가 아니라 제 플레이에서 나왔습니다. 역할을 나눠 맡는 게 맞았습니다.</p></div>
+          </div>
+        </article>
+
+        <article class="case reveal">
+          <div class="case-head"><span class="case-num">CASE 04</span><h3>처음 쓰는 UGS로 1시간 만에 계정 기록</h3></div>
+          <div class="case-steps">
+            <div class="case-step problem"><strong>문제</strong><p>"웹에서 기록이 다른 사람과 공유되나?"를 확인해 보니 기록이 브라우저마다 따로 저장되고 있었습니다.</p></div>
+            <div class="case-step"><strong>선택</strong><p>AI가 낸 선택지 3개(안내만 / 기록 코드 / 로그인 + 클라우드 저장) 중 로그인을 골랐고, 무료 범위와 제출 일정을 조건으로 걸었습니다.</p></div>
+            <div class="case-step"><strong>구현</strong><p>Authentication(ID·비밀번호) + Cloud Save, 게스트 플레이, 게스트 기록을 새 계정으로 이동.</p></div>
+            <div class="case-step"><strong>내가 한 일</strong><p>UGS 대시보드에서 로그인 공급자 추가와 Cloud Save 활성화.</p></div>
+            <div class="case-step verify"><strong>검증</strong><p>릴리스 WebGL에서 가입, 중복 ID, 브라우저 저장소를 지운 뒤 클라우드에서 기록 복원까지 확인했습니다.</p></div>
+            <div class="case-step limit"><strong>남은 한계</strong><p>재화·뽑기 계산이 클라이언트에 있어 조작 방어는 없습니다. Cloud Code로 옮길 계획입니다.</p></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 화면 -->
+    <section class="section section-white">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Screens</span>
+          <h2>게임 화면</h2>
+          <p>아트는 아직 색 도형입니다. 이번 제출에서는 게임성과 계정 기록을 우선했습니다.</p>
+        </div>
+        <div class="p6-shots reveal">
+          <figure><img data-zoom src="../assets/img/p6-login.jpg" alt="로그인 화면 - ID·비밀번호 로그인, 회원가입, 게스트 플레이" loading="lazy"><figcaption>로그인 · 게스트</figcaption></figure>
+          <figure><img data-zoom src="../assets/img/p6-title.jpg" alt="타이틀 화면 - 플레이어 레벨, 재화, 무료 뽑기 횟수" loading="lazy"><figcaption>타이틀</figcaption></figure>
+          <figure><img data-zoom src="../assets/img/p6-setup.jpg" alt="분대 배치 화면" loading="lazy"><figcaption>분대 배치</figcaption></figure>
+          <figure><img data-zoom src="../assets/img/p6-battle.jpg" alt="전투 화면 - 적 길과 보상 길" loading="lazy"><figcaption>전투 (적 길 · 보상 길)</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <nav class="next-nav" aria-label="다른 프로젝트">
+          <a class="next" href="p01.html"><small>다음 프로젝트 →</small><strong>Unity 6 3D 액션 게임 (1인)</strong></a>
+        </nav>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+  <script src="../assets/js/config.js?v=6"></script>
+  <script src="../assets/js/site.js?v=3"></script>
+</body>
+</html>
