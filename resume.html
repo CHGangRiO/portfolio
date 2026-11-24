@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#0f1830">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-  <link rel="stylesheet" href="assets/css/style.css?v=8">
+  <link rel="stylesheet" href="assets/css/style.css?v=9">
 </head>
 <body data-page="resume" data-root="">
   <a class="skip-link" href="#main">본문으로 건너뛰기</a>
@@ -22,12 +22,10 @@
         <p>김창홍 · KIM CHANG HONG · 게임 클라이언트 프로그래머 (신입)</p>
         <dl class="facts">
           <dt>생년월일</dt><dd data-text="birth">1995.07.20</dd>
-          <dt>전화번호</dt><dd><a data-link="phone" data-text="phone">010-4720-0578</a></dd>
-          <dt>이메일</dt><dd><a data-link="email" data-text="email">1138aiie@gmail.com</a></dd>
+          <dt>전화번호</dt><dd data-text="phone">010-4720-0578</dd>
+          <dt>이메일</dt><dd class="copy-field"><span data-text="email">1138aiie@gmail.com</span><span class="copy-wrap"><button type="button" class="copy-btn" data-copy="email" aria-label="이메일 주소 복사" title="이메일 주소 복사"><svg class="i-copy" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg><svg class="i-check" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5l3 3 6-7"/></svg></button><span class="copy-tip" role="status" aria-live="polite"></span></span></dd>
         </dl>
         <div class="btn-row">
-          <a class="btn btn-primary" data-link="email">이메일 보내기</a>
-          <a class="btn btn-ghost" data-link="github">GitHub</a>
           <a class="btn btn-ghost" data-link="notion">Notion</a>
         </div>
       </div>
@@ -52,12 +50,13 @@
           <h2 class="resume-label">프로젝트</h2>
           <div class="resume-items">
             <div class="resume-item">
-              <span class="when">2026.03</span>
-              <h3><a href="projects/p01.html">Unity를 이용한 3D 게임 모작 (1인)</a> · CodeVein</h3>
+              <span class="when">2026.08 – 2026.10</span>
+              <h3>Unity를 이용한 게임 개발 (1인) · 캐릭터서바이벌</h3>
               <ul>
-                <li>상태머신 기반 캐릭터 행동 제어 및 애니메이션 연동</li>
-                <li>Input System을 활용한 입력 처리 구조 설계</li>
-                <li>캐릭터 스탯과 UI 연동 구조 구현, 전투 흐름에 맞춘 HUD 시스템 구성</li>
+                <li>렌더 텍스처와 좌표 역변환을 활용한 UI 속 3D 캐릭터 피킹 구현</li>
+                <li>MVVM 패턴을 적용해 게임 로직과 HUD 갱신 구조 분리</li>
+                <li>발사 전략과 수정자 조합으로 투사체 궤적 확장 구조 설계</li>
+                <li>CSV 기반 데이터 테이블과 플레이 중 수치 수정 도구 구현</li>
               </ul>
             </div>
             <div class="resume-item">
@@ -114,9 +113,9 @@
           <h2 class="resume-label">학력</h2>
           <div class="resume-items">
             <div class="resume-item">
-              <span class="when">2023.02 – 2027.02 (졸업예정)</span>
+              <span class="when">2023.02 – 2027.08 (졸업)</span>
               <h3>고려사이버대학교 컴퓨터공학부</h3>
-              <p>학점 4.14 / 4.5</p>
+              <p>학점 4.17 / 4.5</p>
             </div>
           </div>
         </section>
@@ -139,7 +138,7 @@
         <section class="resume-block resume-grid">
           <h2 class="resume-label">자격증</h2>
           <div class="resume-items">
-            <div class="resume-item"><span class="when">2018.08</span><h3>정보처리산업기사</h3><p>한국산업인력공단</p></div>
+            <div class="resume-item"><span class="when">2026.09</span><h3>정보처리기사</h3><p>한국산업인력공단</p></div>
             <div class="resume-item"><span class="when">2018.06</span><h3>리눅스마스터 2급</h3><p>한국정보통신진흥협회</p></div>
           </div>
         </section>
@@ -149,7 +148,7 @@
   </main>
 
   <footer id="site-footer"></footer>
-  <script src="assets/js/config.js?v=6"></script>
-  <script src="assets/js/site.js?v=4"></script>
+  <script src="assets/js/config.js?v=7"></script>
+  <script src="assets/js/site.js?v=5"></script>
 </body>
 </html>

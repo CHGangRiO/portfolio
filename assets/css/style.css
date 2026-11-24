@@ -244,6 +244,33 @@ ul { margin: 0; padding: 0; }
 .profile-info dd { margin: 0; font-size: 16.5px; font-weight: 600; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
 .profile-info a { text-decoration: none; }
 .profile-info a:hover { color: var(--accent); }
+
+/* 이메일 복사 버튼 */
+.copy-field { display: flex; align-items: center; gap: 8px; }
+.copy-wrap { position: relative; display: inline-flex; flex: none; }
+.copy-btn {
+  display: inline-grid; place-items: center; width: 28px; height: 28px; padding: 0; border-radius: 7px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--ink-mute); cursor: pointer;
+  transition: color .15s, border-color .15s, background .15s;
+}
+.copy-btn:hover { color: var(--accent); border-color: var(--accent); }
+.copy-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copy-btn svg { grid-area: 1 / 1; width: 15px; height: 15px; }
+.copy-btn .i-check { display: none; }
+.copy-btn.is-copied { color: var(--after); border-color: var(--after); background: var(--after-soft); }
+.copy-btn.is-copied .i-copy { display: none; }
+.copy-btn.is-copied .i-check { display: block; }
+.copy-tip {
+  position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translate(-50%, 4px);
+  padding: 5px 10px; border-radius: 6px; background: var(--navy-900); color: #fff;
+  font-size: 12.5px; font-weight: 600; line-height: 1.3; white-space: nowrap;
+  opacity: 0; pointer-events: none; transition: opacity .15s, transform .15s;
+}
+.copy-tip.is-shown { opacity: 1; transform: translate(-50%, 0); }
+.facts .copy-btn { background: rgba(255, 255, 255, .06); border-color: rgba(255, 255, 255, .2); color: var(--on-dark-soft); }
+.facts .copy-btn:hover { color: var(--accent); border-color: var(--accent); }
+.facts .copy-btn.is-copied { color: #7fd8b2; border-color: #7fd8b2; background: rgba(127, 216, 178, .12); }
+.facts .copy-tip { background: #fff; color: var(--navy-900); }
 .profile-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
 .chip-link {
   display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 10px;

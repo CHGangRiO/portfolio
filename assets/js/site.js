@@ -98,6 +98,59 @@
     if (v) el.textContent = v;
   });
 
+  // ---------- 복사 버튼 (data-copy="email" 등 SITE_CONFIG 키) ----------
+  // 클립보드 API가 없거나 거부되면(권한, 임베드 환경 등) 예전 방식으로 한 번 더 시도
+  function legacyCopy(text, keepFocus) {
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.top = "0";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    if (keepFocus) keepFocus.focus();
+    return ok;
+  }
+
+  function copyText(text, keepFocus) {
+    var fallback = function () {
+      if (!legacyCopy(text, keepFocus)) throw new Error("copy failed");
+    };
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).catch(fallback);
+    }
+    return Promise.resolve().then(fallback);
+  }
+
+  document.querySelectorAll("[data-copy]").forEach(function (btn) {
+    var tip = btn.parentNode.querySelector(".copy-tip");
+    var label = btn.getAttribute("aria-label") || "";
+    var timer = 0;
+    var show = function (msg, copied) {
+      btn.classList.toggle("is-copied", copied);
+      if (copied) btn.setAttribute("aria-label", msg);
+      if (tip) { tip.textContent = msg; tip.classList.add("is-shown"); }
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        btn.classList.remove("is-copied");
+        btn.setAttribute("aria-label", label);
+        if (tip) { tip.classList.remove("is-shown"); tip.textContent = ""; }
+      }, 1600);
+    };
+    btn.addEventListener("click", function () {
+      var text = cfg[btn.getAttribute("data-copy")] || "";
+      if (!text) return;
+      copyText(text, btn).then(
+        function () { show("복사했습니다", true); },
+        function () { show("복사하지 못했습니다", false); }
+      );
+    });
+  });
+
   // ---------- 유튜브 (클릭 시 로드) ----------
   function parseYouTube(value) {
     if (!value) return null;

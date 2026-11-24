@@ -16,7 +16,6 @@ window.SITE_CONFIG = {
   // 프로젝트별 링크
   links: {
     p01Repo: "https://github.com/CHGangRiO/p-11u-mg-ps",
-    p01Video: "",                                   // 유튜브 업로드 후 영상 ID 또는 주소
     p02Video: "https://youtu.be/BVLWR92e69k",
     p03Video: "https://youtu.be/ne0xWQ3QdaQ?t=1378",
     p04Video: "https://youtu.be/XgCDOgs6F3U",
