@@ -78,8 +78,6 @@ ul { margin: 0; padding: 0; }
   color: var(--on-dark-soft); font-size: 15px; font-weight: 500; transition: color .15s, background .15s;
 }
 .site-nav a:hover, .site-nav a[aria-current="page"] { color: #fff; background: rgba(255, 255, 255, .07); }
-.site-nav .nav-cta { color: var(--navy-900); background: var(--accent); font-weight: 700; margin-left: 6px; }
-.site-nav .nav-cta:hover { color: var(--navy-900); background: #e19a2c; }
 .nav-toggle { display: none; background: none; border: 0; padding: 10px; cursor: pointer; }
 .nav-toggle span { display: block; width: 22px; height: 2px; background: #fff; margin: 5px 0; border-radius: 2px; transition: transform .2s, opacity .2s; }
 
@@ -93,7 +91,6 @@ ul { margin: 0; padding: 0; }
   .site-header.is-open .site-nav { max-height: 420px; }
   .site-nav ul { flex-direction: column; align-items: stretch; padding: 8px 16px 16px; gap: 2px; }
   .site-nav a { padding: 12px 14px; }
-  .site-nav .nav-cta { margin: 8px 0 0; text-align: center; }
   .site-header.is-open .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .site-header.is-open .nav-toggle span:nth-child(2) { opacity: 0; }
   .site-header.is-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
@@ -326,6 +323,8 @@ ul { margin: 0; padding: 0; }
 .btn-dark:hover { background: var(--navy-600); }
 
 .pj-mini-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 24px; }
+.pj-mini-grid.is-lead { margin: 0 0 24px; }   /* 최신 플레이 빌드: 프로젝트 목록 맨 위 */
+.pj-mini-grid.is-single { grid-template-columns: 1fr; }
 .pj-mini {
   display: flex; gap: 18px; align-items: flex-start; padding: 22px 24px; border-radius: 16px;
   background: var(--surface); border: 1px dashed #cfd5e4;

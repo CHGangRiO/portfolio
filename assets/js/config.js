@@ -10,8 +10,8 @@ window.SITE_CONFIG = {
   email: "1138aiie@gmail.com",
   github: "https://github.com/CHGangRiO",
 
-  // 노션 포트폴리오 페이지 주소를 넣어 주세요.
-  notion: "",
+  // 노션 포트폴리오 페이지 (CharacterSurvivors)
+  notion: "https://app.notion.com/p/CharacterSurvivors-3fb1a957d0c2800fb8a4dd4afc861842",
 
   // 프로젝트별 링크
   links: {
@@ -27,11 +27,11 @@ window.SITE_CONFIG = {
     gameRelease: "https://github.com/CHGangRiO/portfolio/releases/tag/game-v0.1.0"
   },
 
-  // 문서 PDF 경로 (사이트 루트 기준). 비워 두면 PDF 버튼이 숨겨집니다.
+  // 문서 PDF 경로 (사이트 루트 기준 또는 외부 주소). 비워 두면 PDF 버튼이 숨겨집니다.
   docs: {
     coverLetterPdf: "/assets/docs/cover-letter.pdf",
-    applicationPdf: "",                             // 입사지원서 PDF는 주소·병역 사유가 있어 기본 비공개
-    portfolioPdf: "/assets/docs/portfolio.pdf",
+    applicationPdf: "https://drive.google.com/file/d/1p2J2fJ-PEoewK2aU--YnY147_3x_d-pd/view?usp=sharing",   // Google Drive
+    portfolioPdf: "https://drive.google.com/file/d/16mVGHSSFp5r8kyXYo9bVml-geDNTerok/view?usp=sharing",     // Google Drive
     techPdf: "/assets/docs/tech-intro.pdf"
   }
 };

@@ -12,7 +12,7 @@
   <meta name="theme-color" content="#0f1830">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-  <link rel="stylesheet" href="assets/css/style.css?v=7">
+  <link rel="stylesheet" href="assets/css/style.css?v=8">
 </head>
 <body data-page="home" data-root="">
   <a class="skip-link" href="#main">본문으로 건너뛰기</a>
@@ -121,6 +121,34 @@
           <p>상세 페이지에서 구조 설계와 문제 해결 과정을 볼 수 있습니다.</p>
         </div>
 
+        <!-- 최신순: 플레이 빌드(2026.11, 2026.10) → PROJECT 01~05 -->
+        <div class="pj-mini-grid is-lead">
+          <div class="pj-mini reveal">
+            <span class="pj-mini-icon" aria-hidden="true">▶</span>
+            <div>
+              <div class="pj-meta"><span class="no">PLAYABLE BUILD</span><span>2026.11</span><span class="badge badge-green">Web</span></div>
+              <h3>MiniRTS_AI · 브라우저에서 바로 플레이하기</h3>
+              <p>Unity 6로 만든 세로 화면 분대 디펜스 게임입니다. 분대를 끌어 움직이며 몰려오는 몬스터를 막고, 결과 재화로 새 캐릭터를 뽑아 강화합니다. 설치 없이 브라우저에서 플레이할 수 있습니다.</p>
+              <div class="btn-row">
+                <a class="btn btn-dark btn-sm" href="play/minirts/">플레이하기</a>
+              </div>
+            </div>
+          </div>
+          <div class="pj-mini reveal">
+            <span class="pj-mini-icon" aria-hidden="true">▶</span>
+            <div>
+              <div class="pj-meta"><span class="no">PLAYABLE BUILD</span><span>2026.10</span><span class="badge badge-green">Windows</span></div>
+              <h3>CharacterSurvivors · 직접 플레이하기</h3>
+              <p>Unity 6으로 개발 중인 서바이버라이크 액션 게임입니다. Windows 실행 파일을 내려받아 바로 플레이할 수 있습니다.</p>
+              <div class="btn-row">
+                <a class="btn btn-dark btn-sm" data-link="gameDownload" data-fallback="빌드 준비 중">다운로드 (96MB)</a>
+                <a class="btn btn-outline btn-sm" data-link="gameVideo">▶ 영상</a>
+                <a class="btn btn-outline btn-sm" data-link="gameRelease">실행 방법</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="pj-grid">
           <article class="pj-card reveal">
             <a class="pj-thumb" href="projects/p01.html" tabindex="-1" aria-hidden="true"><img src="assets/img/p1-hero.jpg" alt="" loading="lazy"><span class="pj-engine">Unity 6</span></a>
@@ -143,28 +171,9 @@
           </article>
 
           <article class="pj-card reveal">
-            <a class="pj-thumb" href="projects/p02.html" tabindex="-1" aria-hidden="true"><img src="assets/img/p2-hero.jpg" alt="" loading="lazy"><span class="pj-engine">DirectX 11</span></a>
-            <div class="pj-body">
-              <div class="pj-meta"><span class="no">PROJECT 02</span><span>2025.02 – 04 · 1인</span><span>모작: CodeVein</span></div>
-              <h3><a href="projects/p02.html">DirectX11을 이용한 3D 액션 게임</a></h3>
-              <p class="pj-role">모델 로드·스켈레탈 애니메이션, 전투, 카메라 (자체 엔진)</p>
-              <ul class="pj-points">
-                <li>파츠 8종이 본 1세트를 공유하는 스켈레톤 통합 구조</li>
-                <li>계층형 상태 머신 기반 전투 제어 · 구면 좌표 락온 카메라</li>
-                <li>직렬화로 모델 로딩 <strong>2분 → 20초</strong> 단축</li>
-              </ul>
-              <ul class="tags"><li>C++</li><li>HLSL</li><li>Assimp</li><li>ImGui</li></ul>
-              <div class="pj-actions">
-                <a class="btn btn-dark btn-sm" href="projects/p02.html">상세 보기</a>
-                <a class="btn btn-outline btn-sm" data-link="p02Video">▶ 영상</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="pj-card reveal">
             <a class="pj-thumb" href="projects/p03.html" tabindex="-1" aria-hidden="true"><img src="assets/img/p3-hero.jpg" alt="" loading="lazy"><span class="pj-engine">DirectX 11 · Team</span></a>
             <div class="pj-body">
-              <div class="pj-meta"><span class="no">PROJECT 03</span><span>2025.04 – 06 · 5인</span><span>모작: RE4 Remake</span></div>
+              <div class="pj-meta"><span class="no">PROJECT 02</span><span>2025.04 – 06 · 5인</span><span>모작: RE4 Remake</span></div>
               <h3><a href="projects/p03.html">DirectX11을 이용한 3D 액션 게임 (팀)</a></h3>
               <p class="pj-role">5인 중 몬스터 AI 및 행동 제어 전반 담당</p>
               <ul class="pj-points">
@@ -176,6 +185,25 @@
               <div class="pj-actions">
                 <a class="btn btn-dark btn-sm" href="projects/p03.html">상세 보기</a>
                 <a class="btn btn-outline btn-sm" data-link="p03Video">▶ 영상</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="pj-card reveal">
+            <a class="pj-thumb" href="projects/p02.html" tabindex="-1" aria-hidden="true"><img src="assets/img/p2-hero.jpg" alt="" loading="lazy"><span class="pj-engine">DirectX 11</span></a>
+            <div class="pj-body">
+              <div class="pj-meta"><span class="no">PROJECT 03</span><span>2025.02 – 04 · 1인</span><span>모작: CodeVein</span></div>
+              <h3><a href="projects/p02.html">DirectX11을 이용한 3D 액션 게임</a></h3>
+              <p class="pj-role">모델 로드·스켈레탈 애니메이션, 전투, 카메라 (자체 엔진)</p>
+              <ul class="pj-points">
+                <li>파츠 8종이 본 1세트를 공유하는 스켈레톤 통합 구조</li>
+                <li>계층형 상태 머신 기반 전투 제어 · 구면 좌표 락온 카메라</li>
+                <li>직렬화로 모델 로딩 <strong>2분 → 20초</strong> 단축</li>
+              </ul>
+              <ul class="tags"><li>C++</li><li>HLSL</li><li>Assimp</li><li>ImGui</li></ul>
+              <div class="pj-actions">
+                <a class="btn btn-dark btn-sm" href="projects/p02.html">상세 보기</a>
+                <a class="btn btn-outline btn-sm" data-link="p02Video">▶ 영상</a>
               </div>
             </div>
           </article>
@@ -200,7 +228,7 @@
           </article>
         </div>
 
-        <div class="pj-mini-grid">
+        <div class="pj-mini-grid is-single">
           <div class="pj-mini reveal">
             <span class="pj-mini-icon" aria-hidden="true">MFC</span>
             <div>
@@ -209,30 +237,6 @@
               <p>A* 경로 탐색, 타일 픽킹 및 속성 변경, 타일 데이터 저장·불러오기</p>
               <div class="btn-row">
                 <a class="btn btn-outline btn-sm" data-link="p05Video">▶ 영상</a>
-              </div>
-            </div>
-          </div>
-          <div class="pj-mini reveal">
-            <span class="pj-mini-icon" aria-hidden="true">▶</span>
-            <div>
-              <div class="pj-meta"><span class="no">PLAYABLE BUILD</span><span class="badge badge-green">Windows</span></div>
-              <h3>CharacterSurvivors · 직접 플레이하기</h3>
-              <p>Unity 6으로 개발 중인 서바이버라이크 액션 게임입니다. Windows 실행 파일을 내려받아 바로 플레이할 수 있습니다.</p>
-              <div class="btn-row">
-                <a class="btn btn-dark btn-sm" data-link="gameDownload" data-fallback="빌드 준비 중">다운로드 (96MB)</a>
-                <a class="btn btn-outline btn-sm" data-link="gameVideo">▶ 영상</a>
-                <a class="btn btn-outline btn-sm" data-link="gameRelease">실행 방법</a>
-              </div>
-            </div>
-          </div>
-          <div class="pj-mini reveal">
-            <span class="pj-mini-icon" aria-hidden="true">▶</span>
-            <div>
-              <div class="pj-meta"><span class="no">PLAYABLE BUILD</span><span class="badge badge-green">Web</span></div>
-              <h3>MiniRTS_AI · 브라우저에서 바로 플레이하기</h3>
-              <p>Unity 6로 만든 세로 화면 분대 디펜스 게임입니다. 분대를 끌어 움직이며 몰려오는 몬스터를 막고, 결과 재화로 새 캐릭터를 뽑아 강화합니다. 설치 없이 브라우저에서 플레이할 수 있습니다.</p>
-              <div class="btn-row">
-                <a class="btn btn-dark btn-sm" href="play/minirts/">플레이하기</a>
               </div>
             </div>
           </div>
@@ -262,7 +266,7 @@
             <span class="doc-icon" aria-hidden="true">CV</span>
             <h3>입사지원서</h3>
             <p>직무 경험 · 프로젝트 · 교육 · 학력 · 경력 · 자격증</p>
-            <span class="doc-meta">웹 페이지</span>
+            <span class="doc-meta">웹 페이지 · PDF 3쪽</span>
             <div class="doc-actions">
               <a class="btn btn-dark btn-sm" href="resume.html">웹에서 보기</a>
               <a class="btn btn-outline btn-sm" data-link="applicationPdf" target="_blank" rel="noopener">PDF 열기</a>
@@ -271,8 +275,8 @@
           <article class="doc-card reveal">
             <span class="doc-icon" aria-hidden="true">PDF</span>
             <h3>포트폴리오</h3>
-            <p>프로젝트 3종의 구조 설계와 문제 해결 사례 10건</p>
-            <span class="doc-meta">PDF · 25쪽 · 2.5MB</span>
+            <p>CharacterSurvivors의 구조 설계와 측정, 트러블슈팅 3건</p>
+            <span class="doc-meta">PDF · 21쪽</span>
             <div class="doc-actions">
               <a class="btn btn-dark btn-sm" data-link="portfolioPdf" target="_blank" rel="noopener">PDF 열기</a>
               <a class="btn btn-outline btn-sm" data-link="notion">Notion에서 보기</a>
@@ -293,7 +297,7 @@
   </main>
 
   <footer id="site-footer"></footer>
-  <script src="assets/js/config.js?v=5"></script>
-  <script src="assets/js/site.js?v=3"></script>
+  <script src="assets/js/config.js?v=6"></script>
+  <script src="assets/js/site.js?v=4"></script>
 </body>
 </html>

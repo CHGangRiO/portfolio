@@ -26,7 +26,6 @@
       nav.map(function (n) {
         return '<li><a href="' + root + n.href + '"' + (n.id === current && page !== "home" ? ' aria-current="page"' : "") + ">" + n.label + "</a></li>";
       }).join("") +
-      '<li><a class="nav-cta" href="mailto:' + cfg.email + '">연락하기</a></li>' +
       "</ul></nav></div>";
 
     var toggle = header.querySelector(".nav-toggle");
@@ -50,7 +49,7 @@
       '<div class="container footer-inner">' +
       '<div><strong>' + cfg.name + "</strong> · " + cfg.role + "</div>" +
       '<div class="footer-links">' +
-      '<a data-link="email">Email</a><a data-link="github">GitHub</a><a data-link="notion">Notion</a>' +
+      '<a data-link="notion">Notion</a>' +
       "</div>" +
       '<div class="footer-copy">© ' + new Date().getFullYear() + " " + cfg.nameEn + "</div>" +
       "</div>";
