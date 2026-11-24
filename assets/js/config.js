@@ -29,7 +29,7 @@ window.SITE_CONFIG = {
   // 문서 PDF 경로 (사이트 루트 기준 또는 외부 주소). 비워 두면 PDF 버튼이 숨겨집니다.
   docs: {
     coverLetterPdf: "/assets/docs/cover-letter.pdf",
-    applicationPdf: "https://drive.google.com/file/d/1p2J2fJ-PEoewK2aU--YnY147_3x_d-pd/view?usp=sharing",   // Google Drive
+    applicationPdf: "https://drive.google.com/file/d/1FaISWnThPNcLHaaw2GBiAKr9sIGWaGDL/view?usp=drive_link",   // Google Drive
     portfolioPdf: "https://drive.google.com/file/d/16mVGHSSFp5r8kyXYo9bVml-geDNTerok/view?usp=sharing",     // Google Drive
     techPdf: "/assets/docs/tech-intro.pdf"
   }
